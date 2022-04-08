@@ -14,8 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.kruger.enumeracion.EstadoVacunacion;
-import com.kruger.enumeracion.TipoVacuna;
+import com.kruger.enumeration.EstadoVacunacion;
+import com.kruger.enumeration.TipoVacuna;
 
 /**
  * @author gparcos
@@ -50,11 +50,11 @@ public class Empleado {
 	@Column(name = "telefono", length = 10)
 	private LocalDate telefono;
 
-	@Column(name = "estadoVacunacion")
+	@Column(name = "estadoVacunacion", length = 1)
 	@Enumerated(EnumType.STRING)
 	private EstadoVacunacion estadoVacunacion;
 
-	@Column(name = "tipoVacuna")
+	@Column(name = "tipoVacuna" , length = 2)
 	@Enumerated(EnumType.STRING)
 	private TipoVacuna tipoVacuna;
 
