@@ -64,4 +64,54 @@ public class Empleado {
 	@Column(name = "numeroDosis")
 	private Integer numeroDosis;
 
+	public Long getId() {
+		return id;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public LocalDate getDireccion() {
+		return direccion;
+	}
+
+	public LocalDate getTelefono() {
+		return telefono;
+	}
+
+	public EstadoVacunacion getEstadoVacunacion() {
+		return estadoVacunacion;
+	}
+
+	public TipoVacuna getTipoVacuna() {
+		return tipoVacuna;
+	}
+
+	public LocalDate getFechaVacunacion() {
+		return fechaVacunacion;
+	}
+
+	public Integer getNumeroDosis() {
+		return numeroDosis;
+	}
+	
+	
+
 }
