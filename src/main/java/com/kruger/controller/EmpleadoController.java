@@ -16,6 +16,7 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,7 @@ public class EmpleadoController {
 	@Autowired
 	private ModelMapper mapper;
 
+	@PreAuthorize("@authServiceImpl.tieneAcceso('listar')")
 	@GetMapping
 	public ResponseEntity<List<EmpleadoDTO>> listar() throws Exception {
 		List<EmpleadoDTO> lista = service.listar().stream().map(p -> mapper.map(p, EmpleadoDTO.class))
@@ -50,6 +52,7 @@ public class EmpleadoController {
 		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 
+	@PreAuthorize("@authServiceImpl.tieneAcceso('listarPorId')")
 	@GetMapping("/{id}")
 	public ResponseEntity<EmpleadoDTO> listarPorId(@PathVariable("id") Long id) throws Exception {
 		EmpleadoDTO dtoResponse;
@@ -71,7 +74,7 @@ public class EmpleadoController {
 	 * = mapper.map(obj, EmpleadoDTO.class); return new
 	 * ResponseEntity<>(dtoResponse, HttpStatus.CREATED); }
 	 */
-
+	@PreAuthorize("@authServiceImpl.tieneAcceso('registrar')")
 	@PostMapping
 	public ResponseEntity<EmpleadoDTO> registrar(@Valid @RequestBody EmpleadoDTO dtoRequest) throws Exception {
 		Empleado p = mapper.map(dtoRequest, Empleado.class);
@@ -83,6 +86,7 @@ public class EmpleadoController {
 		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
 	}
 
+	@PreAuthorize("@authServiceImpl.tieneAcceso('modificar')")
 	@PutMapping
 	public ResponseEntity<EmpleadoDTO> modificar(@RequestBody EmpleadoDTO dtoRequest) throws Exception {
 		Empleado pac = service.listarPorId(dtoRequest.getId());
@@ -100,6 +104,7 @@ public class EmpleadoController {
 		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
 	}
 
+	@PreAuthorize("@authServiceImpl.tieneAcceso('eliminar')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable("id") Long id) throws Exception {
 		Empleado pac = service.listarPorId(id);
