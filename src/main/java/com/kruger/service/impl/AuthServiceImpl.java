@@ -22,7 +22,20 @@ public class AuthServiceImpl {
 		case "listarPorId":
 			metodoRol = "ADMIN,EMP";
 			break;
+			
+		case "registrar":
+			metodoRol = "ADMIN";
+			break;
+			
+		case "modificar":
+			metodoRol = "ADMIN,EMP";
+			break;
+			
+		case "eliminar":
+			metodoRol = "ADMIN";
+			break;
 		}
+		
 		
 		String metodoRoles[] = metodoRol.split(",");
 		
