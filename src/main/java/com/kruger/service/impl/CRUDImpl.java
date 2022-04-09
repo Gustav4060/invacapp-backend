@@ -2,13 +2,12 @@ package com.kruger.service.impl;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import com.kruger.repo.IGenericRepo;
 import com.kruger.service.ICRUD;
 
 public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID>{
 
-	protected abstract JpaRepository<T, ID> getRepo();
+	protected abstract IGenericRepo<T, ID> getRepo();
 	
 	@Override
 	public T registrar(T t) throws Exception {

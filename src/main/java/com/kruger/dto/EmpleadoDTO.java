@@ -12,7 +12,7 @@ import com.kruger.enumeration.TipoVacuna;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "Paciente DATA")
+@Schema(description = "Empleado DATA")
 public class EmpleadoDTO {
 	
 	private Long id;
@@ -40,9 +40,9 @@ public class EmpleadoDTO {
 
 	private LocalDate fechaNacimiento;
 
-	private LocalDate direccion;
+	private String direccion;
 
-	private LocalDate telefono;
+	private String telefono;
 
 	private EstadoVacunacion estadoVacunacion;
 
@@ -101,19 +101,19 @@ public class EmpleadoDTO {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public LocalDate getDireccion() {
+	public String getDireccion() {
 		return direccion;
 	}
 
-	public void setDireccion(LocalDate direccion) {
+	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 
-	public LocalDate getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(LocalDate telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 

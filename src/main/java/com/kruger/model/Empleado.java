@@ -45,10 +45,10 @@ public class Empleado {
 	private LocalDate fechaNacimiento;
 
 	@Column(name = "direccion", length = 200)
-	private LocalDate direccion;
+	private String direccion;
 
 	@Column(name = "telefono", length = 10)
-	private LocalDate telefono;
+	private String telefono;
 
 	@Column(name = "estadoVacunacion", length = 1)
 	@Enumerated(EnumType.STRING)
@@ -64,8 +64,56 @@ public class Empleado {
 	@Column(name = "numeroDosis")
 	private Integer numeroDosis;
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public Long getId() {
 		return id;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public void setEstadoVacunacion(EstadoVacunacion estadoVacunacion) {
+		this.estadoVacunacion = estadoVacunacion;
+	}
+
+	public void setTipoVacuna(TipoVacuna tipoVacuna) {
+		this.tipoVacuna = tipoVacuna;
+	}
+
+	public void setFechaVacunacion(LocalDate fechaVacunacion) {
+		this.fechaVacunacion = fechaVacunacion;
+	}
+
+	public void setNumeroDosis(Integer numeroDosis) {
+		this.numeroDosis = numeroDosis;
 	}
 
 	public String getCedula() {
@@ -88,11 +136,11 @@ public class Empleado {
 		return fechaNacimiento;
 	}
 
-	public LocalDate getDireccion() {
+	public String getDireccion() {
 		return direccion;
 	}
 
-	public LocalDate getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
@@ -111,7 +159,7 @@ public class Empleado {
 	public Integer getNumeroDosis() {
 		return numeroDosis;
 	}
-	
+
 	
 
 }
