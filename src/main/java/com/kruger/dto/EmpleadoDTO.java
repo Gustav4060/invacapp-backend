@@ -14,23 +14,23 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 @Schema(description = "Empleado DATA")
 public class EmpleadoDTO {
-	
+
 	private Long id;
-	
+
 	@Schema(description = "Cedula del empleado")
 	@NotNull
 	@Pattern(regexp = "[0-9]{10}")
 	@Size(min = 10, max = 10, message = "Cedula debe tener 10 caracteres")
 	private String cedula;
-	
+
 	@Schema(description = "nombres del empleado")
 	@NotNull
-	@Pattern(regexp = "[/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g")
+	@Pattern(regexp = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", message = "Nombre empleado solo caracteres")
 	private String nombres;
 
 	@Schema(description = "apellidos del empleado")
 	@NotNull
-	@Pattern(regexp = "[/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g")
+	@Pattern(regexp = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$",message = "Apellidos empleado solo caracteres")
 	private String apellidos;
 
 	@Schema(description = "correo del empleado")
@@ -51,7 +51,6 @@ public class EmpleadoDTO {
 	private LocalDate fechaVacunacion;
 
 	private Integer numeroDosis;
-	
 
 	public Long getId() {
 		return id;
@@ -148,7 +147,5 @@ public class EmpleadoDTO {
 	public void setNumeroDosis(Integer numeroDosis) {
 		this.numeroDosis = numeroDosis;
 	}
-	
-	
 
 }
