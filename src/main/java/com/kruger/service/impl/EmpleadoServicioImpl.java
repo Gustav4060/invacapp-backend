@@ -1,5 +1,6 @@
 package com.kruger.service.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kruger.dto.UsuarioContraseniaDTO;
+import com.kruger.enumeration.EstadoVacunacionEnum;
 import com.kruger.model.Empleado;
 import com.kruger.model.Rol;
 import com.kruger.model.Usuario;
@@ -37,9 +39,8 @@ public class EmpleadoServicioImpl extends CRUDImpl<Empleado, Long> implements IE
 	protected IGenericRepo<Empleado, Long> getRepo() {
 		return iEmpleadoRepo;
 	}
-
-	@Transactional
 	@Override
+	@Transactional
 	public UsuarioContraseniaDTO darAltaEmpleador(Empleado emp) {
 		Empleado empleado= this.getRepo().save(emp);
 		List<Rol> roles = repoRol.findByNombre("EMP");
@@ -47,6 +48,24 @@ public class EmpleadoServicioImpl extends CRUDImpl<Empleado, Long> implements IE
 		repoUsuario.save(usuario);
 		return new UsuarioContraseniaDTO(empleado.getCorreo(), empleado.getCedula());
 	}
+	@Override
+	public List<Empleado> buscarPorEstadoVacunacion(String estadoVacunacion) {
+		
+		return iEmpleadoRepo.listarEmpleadorPorEstadoVacunacion(estadoVacunacion);
+	}
+	@Override
+	public List<Empleado> buscarPorTipoVacuna(String tipoVacuna) {
+		
+		return iEmpleadoRepo.listarEmpleadorPorTipoVacuna(tipoVacuna);
+	}
+	@Override
+	public List<Empleado> buscarPorFechaVacunacion(LocalDate fechaInicio, LocalDate fechaFin) {
+		
+		return iEmpleadoRepo.listaEmpleadorEntre(fechaInicio, fechaFin);
+	}
+	
+	
+	
 
 	
 

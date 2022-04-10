@@ -39,6 +39,18 @@ public class AuthServiceImpl {
 			metodoRol = "ADMIN";
 			break;
 
+		case "consultaTipoVacuna":
+			metodoRol = "ADMIN";
+			break;
+			
+		case "consultaEstadoVacuna":
+			metodoRol = "ADMIN";
+			break;
+			
+		case "consultaRangoFechas":
+			metodoRol = "ADMIN";
+			break;
+
 		}
 
 		String metodoRoles[] = metodoRol.split(",");

@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kruger.dto.ConsultasDTO;
 import com.kruger.dto.EmpleadoDTO;
 import com.kruger.dto.UsuarioContraseniaDTO;
 import com.kruger.exception.ModeloNotFoundException;
@@ -63,13 +64,6 @@ public class EmpleadoController {
 		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
 	}
 
-	/*
-	 * @PostMapping public ResponseEntity<EmpleadoDTO> registrar(@Valid @RequestBody
-	 * EmpleadoDTO dtoRequest) throws Exception{ Empleado p = mapper.map(dtoRequest,
-	 * Empleado.class); Empleado obj = service.registrar(p); EmpleadoDTO dtoResponse
-	 * = mapper.map(obj, EmpleadoDTO.class); return new
-	 * ResponseEntity<>(dtoResponse, HttpStatus.CREATED); }
-	 */
 	@PreAuthorize("@authServiceImpl.tieneAcceso('registrar')")
 	@PostMapping
 	public ResponseEntity<EmpleadoDTO> registrar(@Valid @RequestBody EmpleadoDTO dtoRequest) throws Exception {
@@ -138,12 +132,28 @@ public class EmpleadoController {
 		return new ResponseEntity<>(ucDto, HttpStatus.OK);
 	}
 
-	/*
-	 * @GetMapping("/pageable") public ResponseEntity<Page<EmpleadoDTO>>
-	 * listarPageable(Pageable page) throws Exception{ Page<EmpleadoDTO> Empleados =
-	 * service.listarPageable(page).map(p -> mapper.map(p, EmpleadoDTO.class));
-	 * 
-	 * return new ResponseEntity<>(Empleados, HttpStatus.OK); }
-	 */
+	@PreAuthorize("@authServiceImpl.tieneAcceso('consultaTipoVacuna')")
+	@PostMapping("/consultaTipoVacuna")
+	public ResponseEntity<EmpleadoDTO> consultaTipoVacuna(@Valid @RequestBody ConsultasDTO dtoRequest) throws Exception {
+		List<Empleado> obj = service.buscarPorTipoVacuna(dtoRequest.getTipoVacunacion());
+		EmpleadoDTO dtoResponse = mapper.map(obj, EmpleadoDTO.class);
+		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
+	}
+	
+	@PreAuthorize("@authServiceImpl.tieneAcceso('consultaEstadoVacuna')")
+	@PostMapping("/consultaEstadoVacuna")
+	public ResponseEntity<EmpleadoDTO> consultaEstadoVacuna(@Valid @RequestBody ConsultasDTO dtoRequest) throws Exception {
+		List<Empleado> obj = service.buscarPorEstadoVacunacion(dtoRequest.getEstadoVacunacion());
+		EmpleadoDTO dtoResponse = mapper.map(obj, EmpleadoDTO.class);
+		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
+	}
+	
+	@PreAuthorize("@authServiceImpl.tieneAcceso('consultaRangoFechas')")
+	@PostMapping("/consultaRangoFechas")
+	public ResponseEntity<EmpleadoDTO> consultaRangoFechas(@Valid @RequestBody ConsultasDTO dtoRequest) throws Exception {
+		List<Empleado> obj = service.buscarPorFechaVacunacion(dtoRequest.getFechaInicio(), dtoRequest.getFechaFin()); 
+		EmpleadoDTO dtoResponse = mapper.map(obj, EmpleadoDTO.class);
+		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
+	}
 
 }
