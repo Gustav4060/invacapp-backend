@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class AuthServiceImpl {
 
 	public boolean tieneAcceso(String path) {
-		
+
 		boolean rpta = false;
 
 		String metodoRol = "";
@@ -22,27 +22,31 @@ public class AuthServiceImpl {
 		case "listarPorId":
 			metodoRol = "ADMIN,EMP";
 			break;
-			
+
 		case "registrar":
 			metodoRol = "ADMIN";
 			break;
-			
+
 		case "modificar":
 			metodoRol = "ADMIN,EMP";
 			break;
-			
+
 		case "eliminar":
 			metodoRol = "ADMIN";
 			break;
+
+		case "darAlta":
+			metodoRol = "ADMIN";
+			break;
+
 		}
-		
-		
+
 		String metodoRoles[] = metodoRol.split(",");
-		
+
 		Authentication usuarioLogueado = SecurityContextHolder.getContext().getAuthentication();
-		
+
 		System.out.println(usuarioLogueado.getName());
-		
+
 		for (GrantedAuthority auth : usuarioLogueado.getAuthorities()) {
 			String rolUser = auth.getAuthority();
 			System.out.println(rolUser);
@@ -53,7 +57,7 @@ public class AuthServiceImpl {
 				}
 			}
 		}
-		
+
 		return rpta;
 	}
 }

@@ -17,7 +17,6 @@ import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.kruger.dto.EmpleadoDTO;
+import com.kruger.dto.UsuarioContraseniaDTO;
 import com.kruger.exception.ModeloNotFoundException;
 import com.kruger.model.Empleado;
 import com.kruger.service.IEmpleadoService;
@@ -38,7 +38,6 @@ import com.kruger.service.IEmpleadoService;
 public class EmpleadoController {
 
 	@Autowired
-	@Qualifier("beanName1")
 	private IEmpleadoService service;
 
 	@Autowired
@@ -80,9 +79,6 @@ public class EmpleadoController {
 		Empleado p = mapper.map(dtoRequest, Empleado.class);
 		Empleado obj = service.registrar(p);
 		EmpleadoDTO dtoResponse = mapper.map(obj, EmpleadoDTO.class);
-		// localhost:8080/Empleados/1
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId())
-				.toUri();
 		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
 	}
 
@@ -135,6 +131,14 @@ public class EmpleadoController {
 		recurso.add(link2.withRel("Empleado-recurso2"));
 
 		return recurso;
+	}
+
+	@PreAuthorize("@authServiceImpl.tieneAcceso('darAlta')")
+	@PostMapping("/darAlta")
+	public ResponseEntity<UsuarioContraseniaDTO> darAlta(@Valid @RequestBody EmpleadoDTO dtoRequest) throws Exception {
+		Empleado p = mapper.map(dtoRequest, Empleado.class);
+		UsuarioContraseniaDTO ucDto = service.darAltaEmpleador(p);
+		return new ResponseEntity<>(ucDto, HttpStatus.OK);
 	}
 
 	/*

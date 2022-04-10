@@ -20,9 +20,9 @@ class InvacappBackendApplicationTests {
 	private BCryptPasswordEncoder bcrypt;
 
 	/*
-	 * @Test void escenario1() { Usuario us = new Usuario(); us.setIdUsuario(4);
-	 * us.setUsername("0604462937"); us.setPassword(bcrypt.encode("123"));
-	 * us.setEnabled(true);
+	 * @Test void escenario1() { Usuario us = new Usuario();
+	 * us.setUsername("Admin"); us.setPassword(bcrypt.encode("Admin"));
+	 * us.setEnabled(true); us.setCedula("0604462937");
 	 * 
 	 * Usuario retorno = repo.save(us);
 	 * assertTrue(retorno.getPassword().equals(us.getPassword())); }

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 public class Usuario {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUsuario;
 
 	@Column(name = "nombre", nullable = false, unique = true)
@@ -26,10 +29,26 @@ public class Usuario {
 
 	@Column(name = "estado", nullable = false)
 	private boolean enabled;
+	
+	@Column(name = "cedula", nullable = false, length = 10)
+	private String cedula;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
 	private List<Rol> roles;
+	
+	public Usuario() {
+		super();
+	}
+
+	public Usuario(String username, String password, boolean enabled, List<Rol> roles, String cedula) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.roles = roles;
+		this.cedula= cedula;
+	}
 
 	public Integer getIdUsuario() {
 		return idUsuario;
@@ -69,6 +88,14 @@ public class Usuario {
 
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
+	}
+
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
 	}
 
 }
