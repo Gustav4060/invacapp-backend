@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.kruger.dto.UsuarioContraseniaDTO;
 import com.kruger.enumeration.EstadoVacunacionEnum;
+import com.kruger.enumeration.TipoVacunaEnum;
 import com.kruger.model.Empleado;
 import com.kruger.model.Rol;
 import com.kruger.model.Usuario;
@@ -49,12 +50,12 @@ public class EmpleadoServicioImpl extends CRUDImpl<Empleado, Long> implements IE
 		return new UsuarioContraseniaDTO(empleado.getCorreo(), empleado.getCedula());
 	}
 	@Override
-	public List<Empleado> buscarPorEstadoVacunacion(String estadoVacunacion) {
+	public List<Empleado> buscarPorEstadoVacunacion(EstadoVacunacionEnum estadoVacunacion) {
 		
 		return iEmpleadoRepo.listarEmpleadorPorEstadoVacunacion(estadoVacunacion);
 	}
 	@Override
-	public List<Empleado> buscarPorTipoVacuna(String tipoVacuna) {
+	public List<Empleado> buscarPorTipoVacuna(TipoVacunaEnum tipoVacuna) {
 		
 		return iEmpleadoRepo.listarEmpleadorPorTipoVacuna(tipoVacuna);
 	}

@@ -134,25 +134,31 @@ public class EmpleadoController {
 
 	@PreAuthorize("@authServiceImpl.tieneAcceso('consultaTipoVacuna')")
 	@PostMapping("/consultaTipoVacuna")
-	public ResponseEntity<EmpleadoDTO> consultaTipoVacuna(@Valid @RequestBody ConsultasDTO dtoRequest) throws Exception {
-		List<Empleado> obj = service.buscarPorTipoVacuna(dtoRequest.getTipoVacunacion());
-		EmpleadoDTO dtoResponse = mapper.map(obj, EmpleadoDTO.class);
+	public ResponseEntity<List<EmpleadoDTO>> consultaTipoVacuna(@Valid @RequestBody ConsultasDTO dtoRequest)
+			throws Exception {
+		List<EmpleadoDTO> dtoResponse = service.buscarPorTipoVacuna(dtoRequest.getTipoVacunacion()).stream()
+				.map(p -> mapper.map(p, EmpleadoDTO.class)).collect(Collectors.toList());
 		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
 	}
-	
+
 	@PreAuthorize("@authServiceImpl.tieneAcceso('consultaEstadoVacuna')")
 	@PostMapping("/consultaEstadoVacuna")
-	public ResponseEntity<EmpleadoDTO> consultaEstadoVacuna(@Valid @RequestBody ConsultasDTO dtoRequest) throws Exception {
-		List<Empleado> obj = service.buscarPorEstadoVacunacion(dtoRequest.getEstadoVacunacion());
-		EmpleadoDTO dtoResponse = mapper.map(obj, EmpleadoDTO.class);
+	public ResponseEntity<List<EmpleadoDTO>> consultaEstadoVacuna(@Valid @RequestBody ConsultasDTO dtoRequest)
+			throws Exception {
+		List<EmpleadoDTO> dtoResponse = service.buscarPorEstadoVacunacion(dtoRequest.getEstadoVacunacion()).stream()
+				.map(p -> mapper.map(p, EmpleadoDTO.class)).collect(Collectors.toList());
+
 		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
 	}
-	
+
 	@PreAuthorize("@authServiceImpl.tieneAcceso('consultaRangoFechas')")
 	@PostMapping("/consultaRangoFechas")
-	public ResponseEntity<EmpleadoDTO> consultaRangoFechas(@Valid @RequestBody ConsultasDTO dtoRequest) throws Exception {
-		List<Empleado> obj = service.buscarPorFechaVacunacion(dtoRequest.getFechaInicio(), dtoRequest.getFechaFin()); 
-		EmpleadoDTO dtoResponse = mapper.map(obj, EmpleadoDTO.class);
+	public ResponseEntity<List<EmpleadoDTO>> consultaRangoFechas(@Valid @RequestBody ConsultasDTO dtoRequest)
+			throws Exception {
+		List<EmpleadoDTO> dtoResponse = service
+				.buscarPorFechaVacunacion(dtoRequest.getFechaInicio(), dtoRequest.getFechaFin()).stream()
+				.map(p -> mapper.map(p, EmpleadoDTO.class)).collect(Collectors.toList());
+		;
 		return new ResponseEntity<>(dtoResponse, HttpStatus.OK);
 	}
 
