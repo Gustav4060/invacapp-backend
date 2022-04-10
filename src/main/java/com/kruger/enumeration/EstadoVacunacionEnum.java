@@ -1,6 +1,6 @@
 package com.kruger.enumeration;
 
-public enum EstadoVacunacion {
+public enum EstadoVacunacionEnum {
 
 	S, N
 

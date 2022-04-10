@@ -7,8 +7,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.kruger.enumeration.EstadoVacunacion;
-import com.kruger.enumeration.TipoVacuna;
+import com.kruger.enumeration.EstadoVacunacionEnum;
+import com.kruger.enumeration.TipoVacunaEnum;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -44,9 +44,9 @@ public class EmpleadoDTO {
 
 	private String telefono;
 
-	private EstadoVacunacion estadoVacunacion;
+	private EstadoVacunacionEnum estadoVacunacion;
 
-	private TipoVacuna tipoVacuna;
+	private TipoVacunaEnum tipoVacuna;
 
 	private LocalDate fechaVacunacion;
 
@@ -116,19 +116,19 @@ public class EmpleadoDTO {
 		this.telefono = telefono;
 	}
 
-	public EstadoVacunacion getEstadoVacunacion() {
+	public EstadoVacunacionEnum getEstadoVacunacion() {
 		return estadoVacunacion;
 	}
 
-	public void setEstadoVacunacion(EstadoVacunacion estadoVacunacion) {
+	public void setEstadoVacunacion(EstadoVacunacionEnum estadoVacunacion) {
 		this.estadoVacunacion = estadoVacunacion;
 	}
 
-	public TipoVacuna getTipoVacuna() {
+	public TipoVacunaEnum getTipoVacuna() {
 		return tipoVacuna;
 	}
 
-	public void setTipoVacuna(TipoVacuna tipoVacuna) {
+	public void setTipoVacuna(TipoVacunaEnum tipoVacuna) {
 		this.tipoVacuna = tipoVacuna;
 	}
 

@@ -1,5 +1,5 @@
 package com.kruger.enumeration;
 
-public enum TipoVacuna {
+public enum TipoVacunaEnum {
 	S, A, P, JJ
 }

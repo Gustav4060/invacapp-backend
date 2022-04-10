@@ -14,8 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.kruger.enumeration.EstadoVacunacion;
-import com.kruger.enumeration.TipoVacuna;
+import com.kruger.enumeration.EstadoVacunacionEnum;
+import com.kruger.enumeration.TipoVacunaEnum;
 
 /**
  * @author gparcos
@@ -52,11 +52,11 @@ public class Empleado {
 
 	@Column(name = "estadoVacunacion", length = 1)
 	@Enumerated(EnumType.STRING)
-	private EstadoVacunacion estadoVacunacion;
+	private EstadoVacunacionEnum estadoVacunacion;
 
 	@Column(name = "tipoVacuna" , length = 2)
 	@Enumerated(EnumType.STRING)
-	private TipoVacuna tipoVacuna;
+	private TipoVacunaEnum tipoVacuna;
 
 	@Column(name = "fechaVacunacion")
 	private LocalDate fechaVacunacion;
@@ -100,11 +100,11 @@ public class Empleado {
 		this.telefono = telefono;
 	}
 
-	public void setEstadoVacunacion(EstadoVacunacion estadoVacunacion) {
+	public void setEstadoVacunacion(EstadoVacunacionEnum estadoVacunacion) {
 		this.estadoVacunacion = estadoVacunacion;
 	}
 
-	public void setTipoVacuna(TipoVacuna tipoVacuna) {
+	public void setTipoVacuna(TipoVacunaEnum tipoVacuna) {
 		this.tipoVacuna = tipoVacuna;
 	}
 
@@ -144,11 +144,11 @@ public class Empleado {
 		return telefono;
 	}
 
-	public EstadoVacunacion getEstadoVacunacion() {
+	public EstadoVacunacionEnum getEstadoVacunacion() {
 		return estadoVacunacion;
 	}
 
-	public TipoVacuna getTipoVacuna() {
+	public TipoVacunaEnum getTipoVacuna() {
 		return tipoVacuna;
 	}
 
