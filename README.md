@@ -38,29 +38,37 @@ _* Deploye el proyecto localmente_
 
 
 
-**Ejecutar el siguiente DML que es la tabla de parametrización del Pico y Placa**
+**EJECUCION**
+
+**Creación del usuario administrador por Test o DML**
 ```
-INSERT INTO public.circula(
-id_circula, nombre_dia, placa0, placa1, placa2, placa3, placa4, placa5, placa6, placa7, placa8, placa9)
-VALUES (1, 'Lunes', '', 'X', 'X', '', '', '', '', '', '', '');
-INSERT INTO public.circula(
-id_circula, nombre_dia, placa0, placa1, placa2, placa3, placa4, placa5, placa6, placa7, placa8, placa9)
-VALUES (2, 'Martes', '', '', '', 'X', 'X', '', '', '', '', '');
-INSERT INTO public.circula(
-id_circula, nombre_dia, placa0, placa1, placa2, placa3, placa4, placa5, placa6, placa7, placa8, placa9)
-VALUES (3, 'Miercoles', '', '', '', '', '', 'X', 'X', '', '', '');
-INSERT INTO public.circula(
-id_circula, nombre_dia, placa0, placa1, placa2, placa3, placa4, placa5, placa6, placa7, placa8, placa9)
-VALUES (4, 'Jueves', '', '', '', '', '', '', '', 'X', 'X', '');
-INSERT INTO public.circula(
-id_circula, nombre_dia, placa0, placa1, placa2, placa3, placa4, placa5, placa6, placa7, placa8, placa9)
-VALUES (5, 'Viernes', 'X', '', '', '', '', '', '', '', '', 'X');
-INSERT INTO public.circula(
-id_circula, nombre_dia, placa0, placa1, placa2, placa3, placa4, placa5, placa6, placa7, placa8, placa9)
-VALUES (6, 'Sabado', '', '', '', '', '', '', '', '', '', '');
-INSERT INTO public.circula(
-id_circula, nombre_dia, placa0, placa1, placa2, placa3, placa4, placa5, placa6, placa7, placa8, placa9)
-VALUES (7, 'Domingo', '', '', '', '', '', '', '', '', '', '');
+	@Test
+	void escenario1() {
+		Usuario us = new Usuario();
+		us.setUsername("Admin");
+		us.setPassword(bcrypt.encode("Admin"));
+		us.setEnabled(true);
+		us.setCedula("0604462937");
+
+		Usuario retorno = repo.save(us);
+		assertTrue(retorno.getPassword().equals(us.getPassword()));
+	}
+```
+**Si ejecuto el test no ejecutar el siguiente DML**
+```
+INSERT INTO public.usuario (cedula,estado,clave,nombre) VALUES
+	 ('0604462937',true,'$2a$10$S.7M5utc8CXKUVtVOLMGXO3nqFYwFcr1kCPWA3YXU.l1/UQog4902','Admin');
+```
+**DML para roles**
+```
+	INSERT INTO public.rol (id_rol,descripcion,nombre) VALUES
+	 (1,'Administrador','ADMIN'),
+	 (2,'Empleado','EMP');
+```
+**Relación roles usuario**
+```
+	INSERT INTO public.usuario_rol (id_usuario,id_rol) VALUES
+	 (1,1);
 ```
 
 ## Autor ✒️
