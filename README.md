@@ -71,6 +71,19 @@ INSERT INTO public.usuario (cedula,estado,clave,nombre) VALUES
 	 (1,1);
 ```
 
+**Pruebas con Postman**
+
+1. Generamos el tipo de autorización
+![image](https://user-images.githubusercontent.com/6717560/162791563-0da22966-edcd-4409-922e-c831f4ad29c9.png)
+
+2. Generamos el token con el usuario administrados creado **Usuario Admin y Password Admin**
+
+![image](https://user-images.githubusercontent.com/6717560/162791731-6e6698ad-a796-406f-ad7f-8c538e9a68f0.png)
+
+
+
+
+
 ## Autor ✒️
 
 * **Gustavo Parco** - *Evalución* - [Gustav4060](https://github.com/Gustav4060)
