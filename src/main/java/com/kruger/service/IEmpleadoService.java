@@ -8,8 +8,13 @@ import com.kruger.enumeration.EstadoVacunacionEnum;
 import com.kruger.enumeration.TipoVacunaEnum;
 import com.kruger.model.Empleado;
 
+/**
+ * 
+ * @author Gustavo Parco
+ *
+ */
 public interface IEmpleadoService extends ICRUD<Empleado, Long> {
-	
+
 	public UsuarioContraseniaDTO darAltaEmpleador(Empleado emp);
 
 	public List<Empleado> buscarPorEstadoVacunacion(EstadoVacunacionEnum estadoVacunacion);

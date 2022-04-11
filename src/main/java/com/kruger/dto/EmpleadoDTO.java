@@ -12,6 +12,11 @@ import com.kruger.enumeration.TipoVacunaEnum;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+/**
+ * 
+ * @author Gustavo Parco
+ *
+ */
 @Schema(description = "Empleado DATA")
 public class EmpleadoDTO {
 
@@ -30,7 +35,7 @@ public class EmpleadoDTO {
 
 	@Schema(description = "apellidos del empleado")
 	@NotNull
-	@Pattern(regexp = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$",message = "Apellidos empleado solo caracteres")
+	@Pattern(regexp = "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", message = "Apellidos empleado solo caracteres")
 	private String apellidos;
 
 	@Schema(description = "correo del empleado")

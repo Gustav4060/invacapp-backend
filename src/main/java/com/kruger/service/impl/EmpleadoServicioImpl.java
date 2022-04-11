@@ -21,6 +21,11 @@ import com.kruger.repo.IRolRepo;
 import com.kruger.repo.IUsuarioRepo;
 import com.kruger.service.IEmpleadoService;
 
+/**
+ * 
+ * @author Gustavo Parco
+ *
+ */
 @Service
 public class EmpleadoServicioImpl extends CRUDImpl<Empleado, Long> implements IEmpleadoService {
 
@@ -40,34 +45,34 @@ public class EmpleadoServicioImpl extends CRUDImpl<Empleado, Long> implements IE
 	protected IGenericRepo<Empleado, Long> getRepo() {
 		return iEmpleadoRepo;
 	}
+
 	@Override
 	@Transactional
 	public UsuarioContraseniaDTO darAltaEmpleador(Empleado emp) {
-		Empleado empleado= this.getRepo().save(emp);
+		Empleado empleado = this.getRepo().save(emp);
 		List<Rol> roles = repoRol.findByNombre("EMP");
-		Usuario usuario = new Usuario(empleado.getCorreo(), bcrypt.encode(empleado.getCedula()), true, roles, empleado.getCedula());
+		Usuario usuario = new Usuario(empleado.getCorreo(), bcrypt.encode(empleado.getCedula()), true, roles,
+				empleado.getCedula());
 		repoUsuario.save(usuario);
 		return new UsuarioContraseniaDTO(empleado.getCorreo(), empleado.getCedula());
 	}
+
 	@Override
 	public List<Empleado> buscarPorEstadoVacunacion(EstadoVacunacionEnum estadoVacunacion) {
-		
+
 		return iEmpleadoRepo.listarEmpleadorPorEstadoVacunacion(estadoVacunacion);
 	}
+
 	@Override
 	public List<Empleado> buscarPorTipoVacuna(TipoVacunaEnum tipoVacuna) {
-		
+
 		return iEmpleadoRepo.listarEmpleadorPorTipoVacuna(tipoVacuna);
 	}
+
 	@Override
 	public List<Empleado> buscarPorFechaVacunacion(LocalDate fechaInicio, LocalDate fechaFin) {
-		
+
 		return iEmpleadoRepo.listaEmpleadorEntre(fechaInicio, fechaFin);
 	}
-	
-	
-	
-
-	
 
 }

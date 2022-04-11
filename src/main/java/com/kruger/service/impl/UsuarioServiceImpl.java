@@ -15,30 +15,36 @@ import org.springframework.stereotype.Service;
 import com.kruger.model.Usuario;
 import com.kruger.repo.IUsuarioRepo;
 
+/**
+ * 
+ * @author Gustavo Parco
+ *
+ */
 @Service
-public class UsuarioServiceImpl implements UserDetailsService{
+public class UsuarioServiceImpl implements UserDetailsService {
 
 	@Autowired
-	private IUsuarioRepo repo;	
-	
+	private IUsuarioRepo repo;
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		
+
 		Usuario usuario = repo.findOneByUsername(username);
-		
-		if(usuario == null) {
+
+		if (usuario == null) {
 			throw new UsernameNotFoundException(String.format("Usuario no existe", username));
 		}
-		
+
 		List<GrantedAuthority> roles = new ArrayList<>();
-		
+
 		usuario.getRoles().forEach(rol -> {
 			roles.add(new SimpleGrantedAuthority(rol.getNombre()));
 			System.out.println(rol.getNombre());
 		});
-				
-		UserDetails ud = new User(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(), true, true, true, roles);
-		
+
+		UserDetails ud = new User(usuario.getUsername(), usuario.getPassword(), usuario.isEnabled(), true, true, true,
+				roles);
+
 		return ud;
 	}
 

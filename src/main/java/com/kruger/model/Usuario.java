@@ -13,6 +13,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Gustavo Parco
+ *
+ */
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -29,14 +34,14 @@ public class Usuario {
 
 	@Column(name = "estado", nullable = false)
 	private boolean enabled;
-	
+
 	@Column(name = "cedula", nullable = false, length = 10)
 	private String cedula;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "id_usuario", referencedColumnName = "idUsuario"), inverseJoinColumns = @JoinColumn(name = "id_rol", referencedColumnName = "idRol"))
 	private List<Rol> roles;
-	
+
 	public Usuario() {
 		super();
 	}
@@ -47,7 +52,7 @@ public class Usuario {
 		this.password = password;
 		this.enabled = enabled;
 		this.roles = roles;
-		this.cedula= cedula;
+		this.cedula = cedula;
 	}
 
 	public Integer getIdUsuario() {

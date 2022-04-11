@@ -31,6 +31,11 @@ import com.kruger.exception.ModeloNotFoundException;
 import com.kruger.model.Empleado;
 import com.kruger.service.IEmpleadoService;
 
+/**
+ * 
+ * @author Gustavo Parco
+ *
+ */
 @RestController
 @RequestMapping("/empleados")
 public class EmpleadoController {
@@ -104,26 +109,31 @@ public class EmpleadoController {
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
-	@GetMapping("/hateoas/{id}")
-	public EntityModel<EmpleadoDTO> listarHateoasPorId(@PathVariable("id") Long id) throws Exception {
-		Empleado obj = service.listarPorId(id);
-
-		if (obj == null) {
-			throw new ModeloNotFoundException("ID NO ENCONTRADO " + id);
-		}
-
-		EmpleadoDTO dto = mapper.map(obj, EmpleadoDTO.class);
-
-		EntityModel<EmpleadoDTO> recurso = EntityModel.of(dto);
-		// localhost:8080/Empleados/1
-		WebMvcLinkBuilder link1 = linkTo(methodOn(this.getClass()).listarPorId(id));
-		WebMvcLinkBuilder link2 = linkTo(methodOn(this.getClass()).listarHateoasPorId(id));
-		recurso.add(link1.withRel("Empleado-recurso1"));
-		recurso.add(link2.withRel("Empleado-recurso2"));
-
-		return recurso;
-	}
-
+	/*
+	 * @GetMapping("/hateoas/{id}") public EntityModel<EmpleadoDTO>
+	 * listarHateoasPorId(@PathVariable("id") Long id) throws Exception { Empleado
+	 * obj = service.listarPorId(id);
+	 * 
+	 * if (obj == null) { throw new ModeloNotFoundException("ID NO ENCONTRADO " +
+	 * id); }
+	 * 
+	 * EmpleadoDTO dto = mapper.map(obj, EmpleadoDTO.class);
+	 * 
+	 * EntityModel<EmpleadoDTO> recurso = EntityModel.of(dto); //
+	 * localhost:8080/Empleados/1 WebMvcLinkBuilder link1 =
+	 * linkTo(methodOn(this.getClass()).listarPorId(id)); WebMvcLinkBuilder link2 =
+	 * linkTo(methodOn(this.getClass()).listarHateoasPorId(id));
+	 * recurso.add(link1.withRel("Empleado-recurso1"));
+	 * recurso.add(link2.withRel("Empleado-recurso2"));
+	 * 
+	 * return recurso; }
+	 */
+	/**
+	 * Metodo para el registro de empleados y usuarios 
+	 * @param dtoRequest
+	 * @return
+	 * @throws Exception
+	 */
 	@PreAuthorize("@authServiceImpl.tieneAcceso('darAlta')")
 	@PostMapping("/darAlta")
 	public ResponseEntity<UsuarioContraseniaDTO> darAlta(@Valid @RequestBody EmpleadoDTO dtoRequest) throws Exception {

@@ -5,6 +5,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+/**
+ * 
+ * @author Gustavo Parco
+ *
+ */
 @Service
 public class AuthServiceImpl {
 
@@ -42,11 +47,11 @@ public class AuthServiceImpl {
 		case "consultaTipoVacuna":
 			metodoRol = "ADMIN";
 			break;
-			
+
 		case "consultaEstadoVacuna":
 			metodoRol = "ADMIN";
 			break;
-			
+
 		case "consultaRangoFechas":
 			metodoRol = "ADMIN";
 			break;

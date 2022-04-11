@@ -5,10 +5,17 @@ import java.util.List;
 import com.kruger.repo.IGenericRepo;
 import com.kruger.service.ICRUD;
 
-public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID>{
+/**
+ * 
+ * @author Gustavo Parco
+ *
+ * @param <T>
+ * @param <ID>
+ */
+public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID> {
 
 	protected abstract IGenericRepo<T, ID> getRepo();
-	
+
 	@Override
 	public T registrar(T t) throws Exception {
 		return getRepo().save(t);
