@@ -91,7 +91,14 @@ y en el body agregamos el json de registro de empleador y como resultado obtenem
 ![image](https://user-images.githubusercontent.com/6717560/162792358-dea8096a-8bd8-4cc7-8c53-68ac41baa0d8.png)
 
 
+**Pruebas con el empleador Registrado**
+Generamos un nuevo token con el usario empleador
 
+![image](https://user-images.githubusercontent.com/6717560/162792729-96a66bf0-cfda-4c73-bbf0-94fd3df315fa.png)
+
+Y realizamos las consultas con el token de empleador.
+
+![image](https://user-images.githubusercontent.com/6717560/162792907-7ad0705f-5281-421c-b371-4e03dfd6619c.png)
 
 ## Autor ✒️
 
