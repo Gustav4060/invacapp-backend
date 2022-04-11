@@ -76,10 +76,19 @@ INSERT INTO public.usuario (cedula,estado,clave,nombre) VALUES
 1. Generamos el tipo de autorización
 ![image](https://user-images.githubusercontent.com/6717560/162791563-0da22966-edcd-4409-922e-c831f4ad29c9.png)
 
-2. Generamos el token con el usuario administrados creado **Usuario Admin y Password Admin**
+2. Generamos el token con el usuario administrados creado **Usuario: Admin y Password: Admin**
 
 ![image](https://user-images.githubusercontent.com/6717560/162791731-6e6698ad-a796-406f-ad7f-8c538e9a68f0.png)
 
+3. Para dar de alta un empleador
+
+Enviamos en el header el token generado
+
+![image](https://user-images.githubusercontent.com/6717560/162792073-0ee7624b-44a8-4f18-a940-ecc7e4eca8af.png)
+
+y en el body agregamos el json de registro de empleador y como resultado obtenemos el nombre de usuario y contraseña del empleador
+
+![image](https://user-images.githubusercontent.com/6717560/162792358-dea8096a-8bd8-4cc7-8c53-68ac41baa0d8.png)
 
 
 
